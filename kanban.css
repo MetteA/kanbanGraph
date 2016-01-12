@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+/*text {
+    font: 12px sans-serif;
+}*/
+svg {
+    display: block;
+}
+html, body, svg {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#chart{
+	height: 700px;
+}

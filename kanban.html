@@ -1,0 +1,73 @@
+<head>
+  <title>kanban Graph</title>
+</head>
+
+<body>
+  <h1>Kanban Graph</h1>
+  {{> addStoryForm}} <!-- Henter og insætter en template - i dette tilfælde "addStoryForm" -->
+
+  {{> board}} <!-- referer til templaten board -->
+
+  {{> graph}} <!-- referer til templaten graph -->
+
+  {{> ProjectData}}  <!-- Referer og indsætter tepmlaten projectData i body, således dens indhold bliver vist -->
+</body>
+<template name="addStoryForm"> <!-- indsætter en form så stories kan tilføjes -->
+	<h3>Insert a story</h3>
+	<form>
+		Title: <input type="text" name="storyTitle">
+		<br />
+		Point: <input type="text" name="storyPoint">
+		<br />
+		<input type="submit" value="Add story">
+	</form>
+</template>
+
+<template name="board">
+	<h3>The board</h3>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Point</th>
+			<th>State</th>
+			<th>Update State</th>
+		</tr>
+		{{#each storyItem}}
+			<tr class="story">
+				<td>{{title}}</td>
+				<td>{{point}}</td>
+				<td>{{state}}</td>
+				<td>
+					<form>
+						<select>
+							<option>{{state}}</option>
+							<option>Backlog</option>
+							<option>Development</option>
+							<option>Test</option>
+							<option>Done</option>
+						</select>
+					</form>
+				</td>
+			</tr>
+		{{/each}}
+	</table>
+	<input type="button" class="remove" value="Remove story">
+</template>
+
+<template name="graph"> <!-- Graf templaten som indeholder det svg som d3 og nvd3 bruger til at generer grafen -->
+	<h3>Graph!</h3>
+	<svg id="chart"></svg>
+</template>
+
+<template name="ProjectData">
+	<h3>Show the data form Project Collection</h3>
+	<ul>
+		{{#each newProjectItem}} <!-- Loop'er igennem alle... -->
+			<li>{{key}}: 
+				{{#each values}}
+					{{time}}, {{point}} -
+				{{/each}}
+			</li>
+		{{/each}}
+	</ul>
+</template>
