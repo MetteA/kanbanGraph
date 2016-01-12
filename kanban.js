@@ -1,6 +1,5 @@
 //Dette kode køres kun på klienten  
 if (Meteor.isClient) {
-
   //Events funktioner til addStoryForm templaten
   Template.addStoryForm.events({
     //Når story formularen blivers sendt, køres følgende funktion
