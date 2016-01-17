@@ -3,17 +3,18 @@
 </head>
 
 <body>
-  <h1>Kanban Graph</h1>
-  {{> addStoryForm}} <!-- Henter og insætter en template - i dette tilfælde "addStoryForm" -->
+  <h1>PACE</h1>
+  {{> addStoryForm}} 
 
-  {{> board}} <!-- referer til templaten board -->
+  {{> board}}
 
-  {{> graph}} <!-- referer til templaten graph -->
+  {{> ProjectData}}  
 
-  {{> ProjectData}}  <!-- Referer og indsætter tepmlaten projectData i body, således dens indhold bliver vist -->
+  {{> graph}}
 </body>
-<template name="addStoryForm"> <!-- indsætter en form så stories kan tilføjes -->
-	<h3>Insert a story</h3>
+
+<template name="addStoryForm"> 
+	<h3>Tilføj en opgave</h3>
 	<form>
 		Title: <input type="text" name="storyTitle">
 		<br />
@@ -24,7 +25,7 @@
 </template>
 
 <template name="board">
-	<h3>The board</h3>
+	<h3>Kanban tavlen</h3>
 	<table>
 		<tr>
 			<th>Title</th>
@@ -51,18 +52,12 @@
 			</tr>
 		{{/each}}
 	</table>
-	<input type="button" class="remove" value="Remove story">
-</template>
-
-<template name="graph"> <!-- Graf templaten som indeholder det svg som d3 og nvd3 bruger til at generer grafen -->
-	<h3>Graph!</h3>
-	<svg id="chart"></svg>
 </template>
 
 <template name="ProjectData">
-	<h3>Show the data form Project Collection</h3>
+	<h3>Data fra project kollektionen</h3>
 	<ul>
-		{{#each newProjectItem}} <!-- Loop'er igennem alle... -->
+		{{#each newProjectItem}}
 			<li>{{key}}: 
 				{{#each values}}
 					{{time}}, {{point}} -
@@ -70,4 +65,9 @@
 			</li>
 		{{/each}}
 	</ul>
+</template>
+
+<template name="graph"> 
+	<h3>Det kumulative flow diagram</h3>
+	<svg id="chart"></svg>
 </template>
